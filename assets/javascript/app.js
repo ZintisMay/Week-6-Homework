@@ -142,8 +142,8 @@ $('#submit').on('click', function(){
 	/////////////////////I had some code here while working out the jquery, but it became redundant later on.////////////////////////////////////////////
 
 	// //looks at text value, pulls it and assigns
-	// var animal = $('#newanimal').val();
-	// if (animal == ""){animal = "Cat"};
+	var animal = $('#newanimal').val();
+	if (animal == ""){animal = "Cat"};
 
 	// //sets text value to nothing
 	// $('#newanimal').val("");
