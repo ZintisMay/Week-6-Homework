@@ -3,65 +3,61 @@
 <head>
 
 <!-- bootstrap link -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- style link -->
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-<style type="text/css">
-	
-body {background-color:navy;}
-div{font-family:Arial;color:white;}
-button{color:black;}
-input{color:black;}
-.container{text-align:center;}
-
-
-</style>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 	<title>Magical Buttons!</title>
 
 </head>
+
 <body>
 	
 	<div class="container">
 
-<div class="jumbotron">
+		<div class="jumbotron">
 <!-- title -->
-				  <h1>Magic Animals Buttons!</h1>
-<!-- this is where the buttons go -->
-				  <div id="buttons">
+			<h1>Magic Animals Buttons!</h1>
 
-				  </div>
-</div>
+<!-- this is the form to put in more buttons -->
+			<form id=""> 
+
+				<label for="newanimal" id="writenewanimal">Put your favorite animal here!</label>
+				
+<!-- text input -->
+			<input type="text" id="newanimal" value="Cat">
+<!-- submit button -->
+			<!-- <input id="submit" type="submit" value="More Buttons!"> -->
+			
+			<input id="submit" type="submit" value="Make Buttons!">
+			<br>
+			<br>
+<!-- this is where the buttons go -->
+			<div id="buttons">
+
+			</div>
+
+			<br>
+
+			</form>How many? 
+				<select id="howmany">
+				  <option value="10">10</option>
+				  <option value="15">15</option>
+				  <option value="25">25</option>
+				  <option value="50">50</option>
+				</select>
+		</div>
 <!-- <input type="submit" id="buttonsubmit" value="More Buttons"> -->
 
-<div>
+	<div>		  
 
-<h4>How many images do you want to see?</h4>
-<br>
-<button id="10">10</button>
-<button id="25">25</button>
-<button id="plusone">+1</button>
-</div>
-<br>
-<br>
-
-				  
-<!-- this is the form to put in more buttons -->
-				  <form id=""> 
-
-				  	<label for="newanimal">Put your favorite animal here!</label>
-				  	<br><br>
-<!-- text input -->
-				    <input type="text" id="newanimal" value="Cat"><br>
-<!-- submit button --><br>
-				    <input id="submit" type="submit" value="More Buttons!">
-				  </form>
 <!-- gifs go here -->
-				  <div id="animals">
+	<div id="animals">
 
-				  </div>
+	</div>
+
+
 
 
 <!-- jquery link -->
@@ -70,10 +66,7 @@ input{color:black;}
 <!-- javascript link -->
 <script src="assets/javascript/app.js"></script>
 
-<!-- script begins -->
-<script type="text/javascript">
 
-</script>
 
 </body>
 </html>

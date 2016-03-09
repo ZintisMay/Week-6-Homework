@@ -1,5 +1,22 @@
 // variables---------------------------------------------------
-var animalArray = ["Dolphin", "Dog", "Elephant", "Panda", "Snake"];
+var animalArray = [
+"Siamese Cat", 
+"Housecat", 
+"Lion", 
+"Tiger",
+"Leopard", 
+"Cheetah", 
+"Bobcat", 
+"Puma", 
+"Mountain Lion", 
+"Serval", 
+"Sphinx Cat", 
+"Tuxedo Cat", 
+"Lolcat", 
+"Nyancat", 
+"Longcat", 
+"Grumpycat"];
+var catcounter = 1;
 
 // functions--------------------------------------------------
 
@@ -24,65 +41,125 @@ function looper(number, action){
 	}
 }
 
+//cats joke code
+function ilovecats(){
+
+	switch(catcounter){
+		case 1:
+		writenewanimal("I'm so glad cats are you favorite animal!");catcounter++;break;
+		case 2:
+		writenewanimal("Cats are my favorite animal too!");catcounter++;break;
+		case 3:
+		writenewanimal("More cats? Absolutely");catcounter++;break;
+		case 4:
+		writenewanimal("I've never heard of that type of cat, so here are some other cats!");catcounter++;break;
+		case 5:
+		writenewanimal("It seems you misspelled cat again...");catcounter++;break;
+		case 6:
+		writenewanimal("It's C A T, try and type is correctly next time.");catcounter++;break;
+		case 7:
+		writenewanimal("C... A... T...");catcounter++;break;
+		case 8:
+		writenewanimal("There you go, for a second there I thought you didn't want to see more cats");catcounter++;break;
+		case 9:
+		writenewanimal("More cats? More cats!");catcounter++;break;
+		case 10:
+		writenewanimal("Wow you really love cats!");catcounter++;break;
+		case 11:writenewanimal("Everyone should have a cat!");catcounter++;break;
+		case 12:writenewanimal("In ancient Egypt, they worshipped cats.");catcounter = 1;break;
+	};
+};
+
+//writes the ilovecats functions out
+function writenewanimal(x){
+
+	$('#writenewanimal').html(x)
+}
+
+
+
 //main methods----------------------------------------------------
+
+
 
 //populates the gifs, gives them attributes
 $(document.body).on('click', '.populate', function() {
-
+//changes the comment
 	ilovecats();
-
+//clears the gif area
 	$('#animals').empty()
-
+//sets the new animal search
 	var target = $(this).data('name');
-
-	console.log(target);
-
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + target + "&api_key=dc6zaTOxFJmzC&limit=10";
-
+//sets how many gifs to search for
+	var limiter = $('#howmany option:selected').val();
+//builds the query URL
+	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + target + "&api_key=dc6zaTOxFJmzC&limit=" + limiter;
+//ajax call
 		$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-
-			console.log(queryURL);
-			console.log(response);
+//sets results var to hold the data
 			var results = response.data;
-			console.log(results);
-			console.log(results.length);
-
+//loop to cycle through each response.data entry
 			for (var i = 0; i < results.length; i++){
+//make a div to hold the info, give it a class to be identified, float it left, put it in animals div field
+				var dv = $('<div>')
+				dv.addClass('animalnumber' + [i]);
+				dv.addClass('floater');
+				$('#animals').append(dv);
+//makes a paragraph
+				var p = $('<p>');
+//finds image rating
+				var rating = results[i].rating.toUpperCase();
+//catch empty ratings
+				if (rating == ""){rating = "None";}
+//set rating
+				p.text("Rating: " + rating);
+//appends the paragraph to the div in the gif area
+				$('.animalnumber' + [i]).append(p);
 
+//make an image
 				var newimage = $('<img>');
+//add some identifier classes
 				newimage.addClass('moveStill');
 				newimage.data('status', 'still');
+//give it the image data
 				newimage.data('move', results[i].images.fixed_height.url);
 				newimage.data('still', results[i].images.fixed_height_still.url);
 				newimage.attr('src', results[i].images.fixed_height_still.url);
-				$('#animals').append(newimage);
+//append the image to the gif div in the gif area
+				$('.animalnumber' + [i]).append(newimage);
 			}
 		});
 
 	return false;
 });
 
+
+
 //main method, ajax on animal click-----------------------------------------
+
 $('#submit').on('click', function(){
 
-	//looks at text value, pulls it and assigns
-	var animal = $('#newanimal').val();
-	if (animal == ""){animal = "Cat"};
+	/////////////////////I had some code here while working out the jquery, but it became redundant later on.////////////////////////////////////////////
 
-	//sets text value to nothing
-	$('#newanimal').val("");
+	// //looks at text value, pulls it and assigns
+	// var animal = $('#newanimal').val();
+	// if (animal == ""){animal = "Cat"};
+
+	// //sets text value to nothing
+	// $('#newanimal').val("");
 
 
-	//does a lookup for that animal
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"
+	// //does a lookup for that animal
+	// var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"
 
-	$.ajax({url: queryURL, method: 'GET'}).done(function(response){
 
-		var results = response.data;
+	// $.ajax({url: queryURL, method: 'GET'}).done(function(response){
+
+	// 	var results = response.data;
 
 		makebutton(animal);
 
-	});
+	// });
 
 	return false;
 
@@ -110,41 +187,10 @@ $('#submit').on('click', function(){
 		return false;
 	});
 
-//cats joke code---------------------------------------------------------------------------------------
-var catcounter = 1;
-function ilovecats(){
-
-	switch(catcounter){
-		case 1:
-		alert("I'm so glad cats are you favorite animal!");catcounter++;break;
-		case 2:
-		alert("They're my favorite animal too!");catcounter++;break;
-		case 3:
-		alert("Ten more cats? Absolutely");catcounter++;break;
-		case 4:
-		alert("I've never heard of that type of cat, so here are some other cats!");catcounter++;break;
-		case 5:
-		alert("It seems you misspelled cat again...");catcounter++;break;
-		case 6:
-		alert("It's C A T, try and type is correctly next time.");catcounter++;break;
-		case 7:
-		alert("C... A... T...");catcounter++;break;
-		case 8:
-		alert("There you go, for a second there I thought you didn't want to see more cats");catcounter++;bre
-		ak;
-		case 9:
-		alert("More cats? More cats!");catcounter++;break;
-		case 10:
-		alert("Wow you really love cats!");catcounter++;break;
-		case 11:alert("Everyone should have a cat!");catcounter++;break;
-		case 12:alert("In ancient Egypt, they worshipped cats.");catcounter++;break;
-	};
-};
-
 
 
 
 //onload----------------------------------------------------------------
 //this function runs x times of makebutton function
 //make button creates a button with array name x as the data-name, and class
-looper(5, makebutton);
+looper(animalArray.length, makebutton);
